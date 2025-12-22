@@ -64,6 +64,38 @@
             <a href="#packages" class="btn btn-lg btn-light">立即出發</a>
         </div>
     </section>
+    <!-- 行程搜尋（含日曆） -->
+    <section class="py-4 bg-light">
+        <div class="container">
+            <form class="row g-3 align-items-end">
+                <div class="col-md-3">
+                    <label class="form-label">出發地</label>
+                    <input type="text" class="form-control" placeholder="請輸入出發地">
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label">目的地</label>
+                    <input type="text" class="form-control" placeholder="請輸入目的地">
+                </div>
+
+                <div class="col-md-2">
+                    <label class="form-label">出發時間</label>
+                    <input type="date" class="form-control">
+                </div>
+
+                <div class="col-md-2">
+                    <label class="form-label">回來時間</label>
+                    <input type="date" class="form-control">
+                </div>
+
+                <div class="col-md-2 d-grid">
+                    <button type="submit" class="btn btn-primary">
+                        搜尋行程
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
 
     <!-- 熱門行程 -->
     <section id="packages" class="py-5">
