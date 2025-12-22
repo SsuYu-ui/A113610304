@@ -1,25 +1,189 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.14.36623.8 d17.14
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication2", "WebApplication2\WebApplication2.csproj", "{7BD21745-3111-4B77-BCD0-84CF08BB9B9A}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7BD21745-3111-4B77-BCD0-84CF08BB9B9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7BD21745-3111-4B77-BCD0-84CF08BB9B9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7BD21745-3111-4B77-BCD0-84CF08BB9B9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7BD21745-3111-4B77-BCD0-84CF08BB9B9A}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E80333B3-CC17-4506-8BFE-9C3647811D99}
-	EndGlobalSection
-EndGlobal
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Travel4U－探索世界</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet" />
+
+    <!-- 自訂樣式 -->
+    <style>
+        .hero {
+            background-image: url('https://www.galilee.com.tw/Page/Skittles_Pic/hash_de217bef42e4c9dba24e369da628d709_1920_10000.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 75vh;
+            color: white;
+            position: relative;
+        }
+
+        .hero-overlay {
+            background: rgba(0, 0, 0, 0.5);
+            height: 100%;
+        }
+
+        .hero-text {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 導覽列 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">Travel4U</a>
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#">首頁</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#packages">熱門行程</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#destinations">旅遊地點</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#testimonials">旅客評價</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#footer">聯絡我們</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主視覺區 -->
+    <section class="hero d-flex align-items-center">
+        <div class="hero-overlay w-100 position-absolute"></div>
+        <div class="container text-center text-white position-relative hero-text">
+            <h1 class="display-4">探索你的下一段旅程</h1>
+            <p class="lead">精選全球旅遊行程，打造難忘回憶</p>
+            <a href="#packages" class="btn btn-lg btn-light">立即出發</a>
+        </div>
+    </section>
+
+    <!-- 熱門行程 -->
+    <section id="packages" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">熱門行程推薦</h2>
+            <div class="row g-4">
+
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhUQEhIWFRAVFxUVFRUVFRUVFRUVFRUWFxUVFRUYHSggGBolGxUVITEhJSkrLy4uFx8zODMtNygtLisBCgoKDg0OGhAQGy4lHyUtLS0tLS0tKy0tLS0tLS0vLSsvLy0rLS0tLy0tLS0tLS0tLS0tLS0tLS0uLS0tLSstLf/AABEIALcBEwMBIgACEQEDEQH/xAAcAAACAgMBAQAAAAAAAAAAAAACAwEEAAUGBwj/xAA9EAABAwMCAwYEBAUDAwUAAAABAAIRAxIhBDEFQVEGEyJhcaGBkbHwFDJS0SNCweHxYoKSBxYkFVNyouL/xAAaAQADAQEBAQAAAAAAAAAAAAABAgMABAUG/8QANhEAAgIBAgQDBgMHBQAAAAAAAAECEQMSIQQTMUFRYaEUIlKB4fAyscEjQnGRktHiFTNTYnL/2gAMAwEAAhEDEQA/APU//QSYuf7TCoarhT2SYuaNyP2XT1+m5GYVKsO9JDDDgMkjB8v7rtx8RPq+hwZeFx1SW5zNqwNVvW0C0wQbsz0+B5qsZG67lK1aPNlHS6ZICwhQCsuWNZCIKFIRCglIQowlCEEQQBGAlY6JCkBGAphLYyMCkKEbWpRkYshFCByAzIclOCYUMJkTYkoCmuYluaqJk2KcEBCcQgITpiMSQhLU8NQvTJi0VyEtxTXpRVESkKclkJzggcFRMkxD2qtUYrbyq9RyrGznyJFCq1KIVis9V3FdMTzJ1ewCxYsTCnozOKOO7oK2Oh4t+sj4DK5kFG1y8GfDwao+sx8XOLuzd8S1jZNsydz+y1VyE1J3WAowxqCoXJlc3bIKxFChOIYpUKVjEgowUsJrQgxkS1MBQhEEjHQwFTKAIgkY6YQUgoQiASjomUJVqmwQkVW5QT3GlGlYpYsUFOTMKU9MJSnJkI2LUEI0Lk6JsW5KcU1yUVRCMWUBCYUDk6JMU5KeUxyU9VRKTK9Uqu9pVohLeFaLOaas19RiWQrdUKqV0RZ52SNMGFilQiTOsCMIQjAXlM+iRkowoDUQCVlESFKxYlGIWKVkLGMamgpaIFBhTGAowlNTqbScDdIyi3CCkK/S4ZiXOAH9UnU0WiLDI5z1CiskW6R0PFKKtiWhEgUyiLYbXkJbislCVkjORBKElSVBTk2wSUJUuQFMhGzCgciQlMhWwCgcEwpbk6EYtyU4JrktyoibFEIHBMcluVESYpyRUKc5JeFWJzzZVqlVirb2qs9dETz8y3AUKVicidPoqwexrxs4SFZC1vBKlF1MdwQafIA7eRHJbMNXkNn0aRIUhZCIBKOgXvAEkwOpUMqA7EH0RuZIg7FcZxDhtbT1L6LjaDLQItcDMscP5fIgespJSa7DJWdmlms2YuE9JXM6ntS06etUZ+emxpIIgh15Y4EeWPmVzP8A3GA1ryZrPxYDJIAEYwGyTnfYpefiXVmcZ3SR6iAiAXL9nONvqPsquF21oBwY2nqMYXUhqMZqStMZxa2YTAttwotZLnb8vRa6izmngKWT3lR0YXoeotavVXH/AE8lWOUZpqWsSKktistUnuJLVNqaWISEbF0iiEEJxahLUyYjQohCUwtUFqZMRoSUJTS1AWp0ybQorEZaoLU1i0KIQEJxCAhMmK0Jc1LcE4hDYnTJtFctQOarVqAtTqQriVHMS3U1cLVBYnUybga59FJOlW0NNLdTVFkISwJ9TW/hwpV00/JYn5jJcheBpeG9hnUqneMqxkGAXcupEfsei7KgHbOGRzGzvPy9FZaxJ1ldrBLnAYmNzHWBleVcY9Nj2fel13F0a7XFzQcsdadt7Wu5eTgs1OoayJmTsGtLifgAuJ7LcUc7U16wo1RQrOm8hxAtFrXR0LRn08l6CwSARkHIIyCPIpYZVNbFMuCWNq+6T/v6mi/7ioC4vcadpg3tc0chM7ASQJKvlzarJY4EEG1whwmCARyKLiPCKdZpY9uCWk+dpBAPUSBhcLruyur0pe7SVHCm4t/hthwd4AHEsOMmcSDiZCEpyir6/mCONS2ez9DQ9vW9yazCSXVGtJNsbGMunMQMjHhzklcjwzVv7wOY0OfJDZMBoPMnl4nSuy4pommmBqG1RH5nVABbfILWnoTIDXE5AIK1nAadPT0u9bFSq8nFpeKTADNw2dsDn+i8l5ITeyryZ6MIuMd9ztOC8Bqtb31RzKLN3NqWdJlj2E4C7nROFgh4eBi4c15lwTh415E6uuAWwyXAMFpIhjGwB6Z2j07fst2c1VGpaKjH0dnDLQ3o8cpMCR6r0MEo6NuhyZMcnI6BhVhoVyjwkhwuILecSFbbpGDfMnEn+i080exaHDT77GuYiLgq+r1FNtQsvAPIEwfhKWzUtN0H8u8gjBEg53Hn5FGr3Fcq2LLigK1Z41T71lFpL3vaHi3IDDkOceQjK2IKKrsLqsklQpUwiACFEJhajoNgh3TK10ZRtgVtKWgE7nlGUh7I3C2FbVuPNU3NWhJ9zZIxv3Su4ICFYsUGmqKRFxKxahLVYLEtzE6YjiJLUBCcWKLE6YlCCENqs2K5ouH95zjO0cuqEsiirYY4nN0jUhiazTk4AJPkJXS6fh1Ol43GT57A+QTHcUYDgE+ig+Kb/ArOqPBJL9pKjTUOz9RwkkN8jkoa3Z2oD4SCOsx8wukbWJExB6GJWq4nq6rXY2O0A+6lDiM0pUmi+ThcEIW0zUP4FWBi2fMEQoVr8TqP9XyKxdPMy+KOTlYPCRyY426sAZ7qldk5ugZBgCSTuNhjmrlCnRayavjL8uc4EmpMQCxw26DbOx2PLcO7Q0nPsdWNNjWzcaPiudcPDc0kRtdE5K3FHjGlI8WvfeT4wW4LY8Mi0CRAG4wvnpZ3J23Z9FDBGCqKov8AENbThz6RNzBL2OIsAcMWzhrZtzgT0iVX4T2ja4kNeLsk0neE+cg5YfPM+e6paytQqBlTT6ql3zAWGXhpIeJAqNk3NMxJI2HRanXcJDw2H0g4Q64VT4QeVzfFbviBEjCKm4u4uhnBSVSVo7ji3H2UaReGl1QA+DOIB3cJEYhcpxniWvqta2+lp21ASLfFUcJwIMwDjKt8OquH8M1WmDZu11rslsugFwIiDGc5mYuaCm1lS+vpiZgF4deMmLw1p258jCaXFZJPd0vLY5v9Phdo5HWDU6rTu72q3u9Magz4zUqUyYeXEjkRAHX5bHsTwQP4eGuqgVKlzwGksc26YBIyS4HricTz7LiPZzS90aTKAFJ7Ylhgi4bhxmXQdzvzAXH8X4VV0bWVKFMVqbWhvhbbUtaN3AHxHAMgZMpMadvmSvw8ivLSVRWxPCuD6yg+oNO9rhTFzaTmtDwTuC6Jz1zuNtl23BO1VOpNA0zQ1QguaSIc4blh5j3XnvDu2Naq1zm0Kgr02EtqsB6GA8O3HxM9Cuz0gp6qzvGdxrmgFroi4x/Kdj1jO3PK6cdxain8vE5smKlqR0dTiTzOd8Iar3stcdjkJuiDWiajZqdB+WeZ+KLiPFaYDb7Wi4RJ5kwB84XfdPZbHHVq5S3KHH+zX4gCu15bUw6IBnG2f7Lg9fxp7O+0lRovbTOmdVbu5rw7unWDpBHxPVdhqu1X/lt0weGMp5qGMvMXBjJ2IESfNc12r4VTrVXcQo1Wim1p79jh4jZ42Fg/mNzG46A/Hlm5pal2H/Zy2XU5rs1qzW1dSrcz8PIaA95p03MZiDbOwDYBEey9a4XRvAFFpNEfleTDXDcWTlw8/qvOey/ZJl2lBrW0KowI/iOc0Oc8VMRaS2IzhzQvWBqyP4bQBbgRtA5AJeGnOUbXT73HnhhH8QJ0Th0+awaM9QrNHUtd4XiHddkZ0w/lcVdzkuoFii94lcaPzRHTeaLuHKDpytq8w6F8Is6UdR81B0w6j5o/whWDR9Sjq8xdH/UX+Hb+oKDRb1THado/mSg0dUyd9xGq7Ig0mcygdTb0VgW9Ut7jyKKbA4ryK/dNU/hx9gpl56pjKpmZ2TNsRRiANGARcDHotoykyAQ0fKPdVPxJmT9EFauSZEqMtUup0QcIdAu5uLi4+Hkj01Gm3II9eaq2udmCfgn0qDYl5joEZdOpou3dfNidTqiHYyOW8KWcSOJwfZW6dekG4j5ZKqVOIMJy3I8uiKp7aQO1vqHnig/S4/BYlfi2HMn7+CxDQvhG5sviPnbiHaK1rbKbQ8Fo8VF9OG5n8rxn5oautuc4kEGA50gxadnA3kWwInyXO0aXhDu7IDnth84PiIIOPCdufzW3GhZSpupEtLXGiS5twc29zHEXnBGQfb08VYcbaXi6/Kz0PaJ0g9Bp6Z1FYVHMsDGC66G3G0i11js4PL4reCpoGSAHvnJsdSc3fZt9NpnMZAG/x5fhdEFtUmo5oa8S9rQ447yDG0GfdX9e9r7GtALcy97GguAaSYcyfF5OKGbEten72LPidNbdvzNmRpXgmnSrzsM0hkxiWtP2AnaPiBomwfiAREBlQeGRJEFsOz6Lm+0+iDXkU2N/LRe20Q0iXyRJwNhHOOUIdJxFrSGml4c9PzAZiNm7/JCGDVG19+pvafJnoOg7b0mh7P8AyHMm095TokB3kGuA578/JHW7ZPuBp1B3REOY+kTEnNoBIneMridE9tr3tbBJqOAEwGiAIud5c53TtJxEz45IIzIaYM+vRGcJxVRVjPJG97PRNH2qoDPdtcSRc19F0HfxNJBtgSIk4Wxq8bZUeW0tMX0mOBDmi2CRcLXYh+3svMuEVq1TvGFpcfzNgsDQ0AC2J3JI3PXdZwhhp0w59Iuofh5aSGhveS8yXekYQjzN00Zyg9z1s9oHlgLWXuE+F/gecYa4gEDPlyXO9pK+l1FdoraruoptDqNlSDUkkgyweEAA89+gzy+i4nSLmzRAiCSCfzSGWkkDEnkceagaPvarhWrAU2stY81AXOEy1jmDfJi5sTjCrz8yW9NeH3RyZuHxy3gtzX8ToVab69etUDmXUjaxwqOfeHGm8Zy3wk78hO0rY8B1r6zNR39Rwb+HLWioS4uugNGTyLZwDgGSqui0tlYX0G3SG3VGl9CyJu3F2AcnmurfxY12uoF+mdTaWhoYx1Mw0NfJMnwS6DCbmatnt5CQ4Zrcvca7T0mV9P3NK6lTa1rDcWZIBwIg/mbmV6Fp3sDQ5sEnfIMEYI+BBC8j1/Cq776zrX1GGe7JA8Lmwe7a5tpAsEeGQF0fYTtD4alCo0U3Bz38mhxdbDQJkucS4rsxZYtVZPJBxe/U7x1aZ2ym0Dyu/deaVe2WoDKTaVMurBo70vYAGuhwAIDufhMg4Vbh/bKs14FZlVtOk+81IbNRlj2uY4kgHxuBEfpHTN3prqSqSds9Z/3Z+Cruqn9S4iv/ANRNM1suo1wORsYQcxuH4z1WaPt9p3SH0qoc0FzrQ1wDQSBBBlxOMAYz0WUUt2CU2+h2h1J/UgOrWi0naPS1Wg98GOIu7sgd4GmIc4TjrG6nUcX0YBH4tvNpMQGGP5pPpt1Te4uonvjuJ8dps09TUiHMY1zhB3LZEA+ohajtB2nZS01SrSe01AxrmtkE/wAQCwkehla5+k0J0h0X48d1kufTphoEGSLZOZzA5hUa3Z/hQdD9W8tIDNvCIzDQ3xARAkzsE6kuyNy1fvM7fR68VGMqNPhe0OHo4Aj6p3erkdAdBQqss1tUUqbCwMPjbFQzvktywb7fFbDS9rOHuc4d9UDW/qYWzAnctCfUvAg8bT6o3preakVPVc7r+OaCvTNM6h9MlzS0sAmWOa9vigiJAkY5hWW9rtFb4arg8QS2APXJx7ravIOjzN6Gu3/qn0KZGdvf6rnana/RQwtrvh2/hFw2zaeWd8rS8c7SUIc5usdUa0TaWHPkLOfq0eqG7W+w20fP5nodStaJJtYASSYA+eyoVOM6ZxANVp+Jj57Lzo65rmB93gdBBkgGdsFVqWva66HNNptJuGDy+oVFgj3ZKXFPstj1KnUpkXMII5Frp9wkOot3K8ypa8EXseImLgecxE9ZT9NxyuwB/eGIkh35fk6YTLD3TJviV0aPRu4/1eyxefO7XVeVRseXdx7rFuXLxG58PA4PX8aNfRCg+5zqbqXdvkl4DXC64xkRMZJxknkPEatOoG2uN2GvDiBSLWG5rmtccHkQfnhamjWl4dUoPcAQXAMYXEcwC4SD5/VPYKZpipdqaVYAmxtIObOYAdcNxHJeTLCm01a7nuLIlFxdMZwumZ1LZAYQxsMn8xbhwsLgRvIzvyhbXVacFg/jUWsaBYHU6jXuBmRAaYdt0223XO6XTVC6KjxDzTBuY/ciC51vJsn4Drhddw7sa6ocanTEQLW0KjtO8nnc14F3zUp4Lad9PIzcXRzOtdcTa4Ot8I3hzQXnw3AESXE7cxzlaus8jxEQAPvHxXc0OwHEBaO5c/JD76lGoy0zkG4mdtk5vYbV06ZYNEC4uu7w98HDLSWi0wBAPzKrGKoDkcbS1ljGBxFrpy0w5okTuCHYJx5YhDS1rSMOEic5bdB8/vK7bSdmqtO8V9JXM1A+mab6jbAILQQ5pDocP5pTdDwrT03XGjXDrQzx06FUANbaPBUoEE+e55plDysEsiZp+A6vTtb3vi/ENBaQXC0i7dpHL8v3CfS1YdoxRdZsBbe0EgFwgtJBHL5LdUexemrg0mVHNvLvzaNlNxvxN0tZiBEbfNdBpf8AplYxzAKFQuL81aUPF/RzHkADGI5KUYRjdsZzb6HL8A0NWtNSuwODbDTYx4qNmAKlzZJgY2ETHnNx3ZGobqja7aMljm20atuA2ZNgDfE2ea9D4HwOtp9qGjJk+JpqU3Cd5cWOu9l07b4G08wDI+BxK58mJueqMq8qTHUo6dLR4dV0OrtnvO/fM3Ne8i0QIDKkHMO2n83kk9nqtS6ux7HONjvCWPk1qk3U7SCXHws2zHLK94bSdzPi5loA9jP1Wr4x2cp6gsLy4OpuD2ltrXNcOYMKkYtddxU6R4wdPqGODXUa7S57ibGVBa2GwBDRIJcTnoRygbHUcHdUcT+G1LjTgB7ab/GB+UgnBPiBJB5FewM01QOvY6mZgGWlshsxsd8nMK43AyB8Dj4LPHFoLlapnhdDgeqde11GqwHMup1ORJbDrcGScieSVr9LXp+MlzWEtbYbmTdGbXDJwNtj6r3g1GpTn/tzUtEY9yaxbHg+n8Re7UEXRHicCZ8JmndABAc3/kkV6zAxnhuYAe8EwXOkT4gZLgByHNe16zSsBBFFpdcTNrSZMycx16oXcE04BIptBMk+BnMkmR/ud8yuhR26UJKG1I+e+M1zWrurtcxgdbDS6HABrWxtv+6rB5tDnVWbEuyS7yFtou9F9A1uDU//AG2/8W/sqDuAUh/LtOCAd5ncZ3XXjnNdHXyOKcPFWeG1qz5kPYJLj4SQc4IECeuPdQ+u5wEPaCAM+OSJxizfI57Qvah2fptaANhtIDjkzuRKoP4Ie9Phb3VgAIAm4OPLbaMx06KsXO71b/wX8iMqX7vqeQjvcOvFs72uGRkg+GeXPoUt1Kp4n33Z8IIdsN8AeY+YXsb+Bt/T7N/ZUaHBnEO7ymGG4xa5rvDPhkgDMQgob/i9Ac9pfg9foeXGi4iQWCRME1JjoQG+4A2nKAaeqSQS2fMPzPSG/Beo1eCN6fRLdwRv3/lUjir9/wBCftT/AOP1+h55p9JUqTdVY2mTa5xDgBI/S4CRIAxzRaXhlRzye8b3YhxnNxbBAsZP+V3h4KOo+AlC/gY+8fVK+HfadfJG9qdf7fr9DUcd05dSaaphk47p0NySY7sEuLo528+S1DNPewaZjHC58gkEXQPCLnYG2+J+K6mpwAdPkR/VQeANInMedv0T8hVvK340iXPyLojWajspVbQG9Nsgva1wJlpbDgZOdyLf86/Q8Er1mODg4xLiTUa1rLhj87gOU/ZXQ1OzzY/xuqtXgY6GekA+4wp+ytp++r/87fyv9SntUk03Hb+P6mkHZp4x+IYB5aikB8pwsWzdwYdSP9qhD2PJ8a/p/wAhvb4/B6/Q9f8A+1tLt3YI9ahP/K72WHsno4t7r/7vB+q31ikU/sLzuZPxPc0R8DnB2O0p3pfKo/8Aqq7uw+iJIsIPQPdI9V1tihsn+Uj1j+hW5mTxNy4+BzLOxOiDbRRmeZc+75yCFsdBwdlEfw72xsO+qub/AMXEj2W3DUUIOUn1Yyil0QmDy90bGCOSK1YKYmefVBBCDQiFMKCIWJgEtbG30Qmef9lHeoHPSuSCkxhqHyQGqUErEjmxtJJeUKlZCS7YaMDfgFmP8qRjn+yEwumMVEk22C5DUOJlE5qCEzFK7nJFYK4WBKdTRjInKJr3tSHsWwqU1Xc1VUyMsZTLEtwVxzUBbiYTKZJ4ylaEJojfCtOZ94QBg6/JHWSeIrfh/T4BYKXl7YVm2Ofx6KJz6fP+yOsXlFNzBzHsP2Uho2/ZWxHTKGwc49ICOsXlsqOYOX0HvhV6tHnC2Lmj7wkvHyHyRUxXBmudT+8KU5zDO/yI/dYm1k9LPRoUwonyRLzT6AiFICQ7VU5sL23fpkE/LdPaBy/ZYJkKVAb9yhfUjbKBgmnmQR5HP0U+qSannnySo5HPWUHIKQ2pU/TP0B/qfghJPPKANA2wpSOVjJErFCmEljErJUQsStmJlDKxxQynx0CQy7qp7pDTZcYTXuAwNl0p7E2is5CjMfeUsgKeoOkFyU5NJUFvkspoDiIfKRU9lYcPuUotP3sjrQNJXNPok1GFW3N8kDm9QipE3AqHohLTGx+Ke6n0SHgjeB5lOpk3AXA/t+6gtnl9/JHk88/L0mFhHL+/vhHWI4CKlLnIHqVAn7Mj6J15+HUEe/RLtJPtmMeybWK4AOOecev1EIKs8gfmP2RvnY/Gce5SarhECJ/+WPTIymUxHAWR1Lvn/dYpNT/T7EqEdaE0HoqDAkgb7wN/3SzJyfh5KZXJZ6hLWgGQ0A9Yyiu80ouUA9UNQUhhchuQFyi5I5DUSDyCyUKlI2NRMrJUKULCSFMoVKFmolCVkqCUthALllyElQSnUjUOoVYPlzTHnmMj1z8VUlPoOgEyM4Hqqxn2FlHuR95Q4UPf8vQgJJdy/ZJKRkgyenslfNFP3hC5yW7DRFyA/f2VhPkoc5GwUCT5IT6+6mUMjr7rajaQCOWDzz/lD8/hj+iMH7JyhnlE/NMpiOIDqfP790gs65+I94VgkfH0/soAjr6HHtCdTEcCnz5Dyn6dFFuPEAG7TvHq7qrNdgO8fX2CQ2kACLhB6j+ibVZNxKNRo3A88gun57Y6KDTmIJI6eFvtlWnkflBu9LfoUiqwTJBA6E458pgHl8d1rZNxEVKQk/8A5PupTG08YOPK0j54WLapA0I7YvUB0rFimzsRhKG5SsSsZAysUrEjGMUrFiASVkrFiATJWSsWIGMlCSpWIBFlCVCxZBCYwkwPX0CzUPGANht5nqoWJ26iDqxRfnz91neR/cBYsUnkaG0ojvPvb6IHVJzEehKxYipti0iC4ef745dEsvHX2WLENbDpM+qglYsVFuhGDkIHT9l37rFizQBT3Rzjqc/1UtInEk+eFCxKnvRn0Ju5YPkUMkfp+RKxYrRJsB9F3OPJVX0iATA+/IrFioTaEiq7qB5Z/ZSsWLEj/9k=" class="card-img-top" alt="海島">
+                        <div class="card-body">
+                            <h5 class="card-title">熱帶海島假期</h5>
+                            <p class="card-text">5 天 4 夜｜全包式行程｜親子適合</p>
+                            <a href="#" class="btn btn-primary">立即報名</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://photo.settour.com.tw/900x600/https://www.settour.com.tw/ss_img/GRT/0000/0036/75/GRT0000003675_m.jpg" class="card-img-top" alt="山林">
+                        <div class="card-body">
+                            <h5 class="card-title">高山探險之旅</h5>
+                            <p class="card-text">7 天 6 夜｜登山健行｜專業導覽</p>
+                            <a href="#" class="btn btn-primary">立即報名</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://2024-dailyview.s3.ap-northeast-1.amazonaws.com/Content/Upload/Popular/Images/2022-03/f9c2dccc-7f68-446d-bdc0-eaad3de1c6fa_m.jpg" class="card-img-top" alt="城市">
+                        <div class="card-body">
+                            <h5 class="card-title">城市文化巡禮</h5>
+                            <p class="card-text">4 天 3 夜｜美食購物｜夜生活</p>
+                            <a href="#" class="btn btn-primary">立即報名</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 旅遊地點 -->
+    <section id="destinations" class="bg-light py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">人氣旅遊地點</h2>
+            <div class="row text-center g-4">
+
+                <div class="col-sm-4">
+                    <div class="p-3 border rounded">
+                        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/df/da/34/the-glass-pyramid-is.jpg?w=600&h=400&s=1" class="img-fluid rounded mb-2">
+                        <h5>巴黎</h5>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="p-3 border rounded">
+                        <img src="https://image.cdn-eztravel.com.tw/6MPKf53qDJqAXa6f-v71XxnU9ZxCObMqIeNo_dw7grs/g:ce/aHR0cDovL3ZhY2F0aW9uLmNkbi1lenRyYXZlbC5jb20udHcvcG9pL2pwL1RZTy9Ub2t5byBUb3dlci9zaHV0dGVyc3RvY2tfMTI5NjExMjI1X1IxNjAwLmpwZw.jpg" class="img-fluid rounded mb-2">
+                        <h5>東京</h5>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="p-3 border rounded">
+                        <img src="https://photo.settour.com.tw/900x600/https://www.settour.com.tw/ss_img/info/location/MLE/E0/MLE0000083/MLE0000083_138647.jpg" class="img-fluid rounded mb-2">
+                        <h5>馬爾地夫</h5>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 旅客評價 -->
+    <section id="testimonials" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">旅客真實評價</h2>
+            <div class="row g-4">
+
+                <div class="col-md-4">
+                    <blockquote class="blockquote border p-3">
+                        「服務超棒，行程安排非常用心！」
+                        <footer class="blockquote-footer">陳小姐</footer>
+                    </blockquote>
+                </div>
+
+                <div class="col-md-4">
+                    <blockquote class="blockquote border p-3">
+                        「這是我人生中最難忘的一次旅行。」
+                        <footer class="blockquote-footer">田先生</footer>
+                    </blockquote>
+                </div>
+
+                <div class="col-md-4">
+                    <blockquote class="blockquote border p-3">
+                        「導遊專業又親切，真的大推！」
+                        <footer class="blockquote-footer">林同學</footer>
+                    </blockquote>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer id="footer" class="bg-primary text-white text-center py-4">
+        <div class="container">
+            <p>© 2025 Travel4U 旅遊網｜版權所有</p>
+            <div>
+                <a href="#" class="text-white mx-2">Facebook</a> |
+                <a href="#" class="text-white mx-2">Instagram</a> |
+                <a href="#" class="text-white mx-2">Twitter</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+    </script>
+</body>
+</html>
