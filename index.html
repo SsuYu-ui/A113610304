@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>隨機航班產生器</title>
+  <style>
+    body { font-family: -apple-system, Roboto, "Segoe UI", "Noto Sans", "Microsoft JhengHei", sans-serif; padding: 20px; }
+    .form { max-width: 560px; margin: 0 auto; }
+    label { display:block; margin-top:12px; font-weight:600; }
+    input[type="text"] { width:100%; padding:8px 10px; font-size:16px; margin-top:6px; box-sizing:border-box; }
+    button { margin-top:14px; padding:10px 16px; font-size:16px; cursor:pointer; }
+    /* modal */
+    .modal-backdrop { position:fixed; inset:0; background:rgba(0,0,0,0.5); display:none; align-items:center; justify-content:center; z-index:9999; }
+    .modal { background:#fff; padding:18px; border-radius:8px; width:90%; max-width:720px; box-shadow:0 8px 30px rgba(0,0,0,0.25); }
+    .modal h2 { margin:0 0 8px 0; }
+    .flights-table { width:100%; border-collapse:collapse; margin-top:10px; }
+    .flights-table th, .flights-table td { border-bottom:1px solid #eee; padding:8px 6px; text-align:left; font-size:14px; }
+    .flights-table th { background:#fafafa; font-weight:600; }
+    .close-btn { float:right; background:#eee; border:0; padding:6px 10px; cursor:pointer; border-radius:6px; }
+    .no-results { padding:12px 0; color:#666; }
+  </style>
+</head>
+<body>
+  <div class="form">
+    <h1>隨機航班產生器（6 班）</h1>
+    <p>在下面輸入「出發地」與「目的地」，按下「搜尋航班」會彈出隨機產生的 6 班航班。</p>
+
+    <label for="from">出發地（例如：台灣 或 Taipei）</label>
+    <input id="from" type="text" placeholder="輸入出發地（必填）" />
+
+    <label for="to">目的地（例如：日本 或 Tokyo）</label>
+    <input id="to" type="text" placeholder="輸入目的地（必填）" />
+
+    <button id="searchBtn">搜尋航班</button>
+  </div>
+
+  <!-- Modal -->
+  <div id="modalBackdrop" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" role="document">
+      <button id="closeModal" class="close-btn">關閉</button>
+      <h2 id="modalTitle">航班結果</h2>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script>
+    // 工具：補零
+    function pad(n){ return (n<10? '0'+n: ''+n); }
+
+    // 隨機整數（含下限與上限）
+    function randInt(min, max){ return Math.floor(Math.random()*(max-min+1))+min; }
+
+    // 產生 6 班航班
+    function generateFlights(from, to, count){
+      // 參考航空公司代碼（簡單隨機）
+      const airlines = ["CI","BR","JL","NH","CX","KE","SQ","UA","AA","ZX","VN","QF"];
+      const carriersNames = {
+        "CI":"中華航空", "BR":"長榮航空", "JL":"日本航空", "NH":"全日空", "CX":"國泰航空",
+        "KE":"大韓航空","SQ":"新加坡航空","UA":"美國聯合航空","AA":"美國航空","ZX":"示範航空",
+        "VN":"越南航空","QF":"澳洲航空"
+      };
+
+      let flights = [];
+      // 生成隨機時間（在 06:00 - 23:30 之間），然後排序
+      for(let i=0;i<count;i++){
+        const hour = randInt(6,23);
+        const minute = randInt(0,59);
+        // flight number: AIRLINE + 2~4 位數
+        const airline = airlines[randInt(0,airlines.length-1)];
+        const numDigits = randInt(2,3);
+        const flightNum = airline + randInt(Math.pow(10,numDigits-1), Math.pow(10,numDigits)-1);
+        // 飛行時間 (小時)
+        const durationHours = randInt(2,10); // 可調
+        // 價格（示範）
+        const price = randInt(2000,15000);
+        flights.push({
+          time: pad(hour)+":"+pad(minute),
+          flight: flightNum,
+          carrier: carriersNames[airline] || airline,
+          duration: durationHours + "小時",
+          price: "TWD " + price.toLocaleString()
+        });
+      }
+      // 以時間排序
+      flights.sort((a,b)=>{
+        const ta = a.time.split(":"); const tb = b.time.split(":");
+        return parseInt(ta[0])*60+parseInt(ta[1]) - (parseInt(tb[0])*60+parseInt(tb[1]));
+      });
+      return flights;
+    }
+
+    // 檢查輸入，並顯示 modal
+    document.getElementById('searchBtn').addEventListener('click', function(){
+      const from = document.getElementById('from').value.trim();
+      const to = document.getElementById('to').value.trim();
+      if(!from || !to){
+        alert('請填寫出發地與目的地。');
+        return;
+      }
+      const flights = generateFlights(from, to, 6);
+      const modalTitle = document.getElementById('modalTitle');
+      modalTitle.textContent = `從 ${from} 到 ${to} 的隨機航班（共 ${flights.length} 班）`;
+
+      const content = document.getElementById('modalContent');
+      // 建表格
+      let html = '<table class="flights-table"><thead><tr>' +
+                 '<th>時間</th><th>航班</th><th>航空公司</th><th>飛行時間</th><th>票價</th></tr></thead><tbody>';
+      for(const f of flights){
+        html += `<tr>
+                  <td>${f.time}</td>
+                  <td>${f.flight}</td>
+                  <td>${f.carrier}</td>
+                  <td>${f.duration}</td>
+                  <td>${f.price}</td>
+                 </tr>`;
+      }
+      html += '</tbody></table>';
+      content.innerHTML = html;
+
+      // 顯示 modal
+      const mb = document.getElementById('modalBackdrop');
+      mb.style.display = 'flex';
+      mb.setAttribute('aria-hidden','false');
+    });
+
+    // 關閉 modal
+    document.getElementById('closeModal').addEventListener('click', function(){
+      const mb = document.getElementById('modalBackdrop');
+      mb.style.display = 'none';
+      mb.setAttribute('aria-hidden','true');
+    });
+    // 點背景關閉
+    document.getElementById('modalBackdrop').addEventListener('click', function(e){
+      if(e.target === this){
+        this.style.display='none';
+        this.setAttribute('aria-hidden','true');
+      }
+    });
+
+    // Enter 在輸入框上也能觸發
+    document.getElementById('to').addEventListener('keypress', function(e){
+      if(e.key === 'Enter'){ document.getElementById('searchBtn').click(); }
+    });
+    document.getElementById('from').addEventListener('keypress', function(e){
+      if(e.key === 'Enter'){ document.getElementById('searchBtn').click(); }
+    });
+  </script>
+</body>
+</html>
